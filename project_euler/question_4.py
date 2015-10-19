@@ -9,7 +9,7 @@ Brute Force Solution
 """
 
 
-component_range = range(100, 10000)
+component_range = range(100, 1000)
 
 palindrones = []
 
@@ -24,18 +24,18 @@ for component_one in component_range:
 palindrones.sort()
 print(palindrones[-1])
 
-
-import itertools
-
-highest_palindrone = 0
-for item in itertools.product(range(100, 10000), range(100, 10000)):
-    possibility = item[0] * item[1]
-
-    if str(possibility) == str(possibility)[::-1]:
-        if possibility > highest_palindrone:
-            highest_palindrone = possibility
-
-print(highest_palindrone)
+#
+# import itertools
+#
+# highest_palindrone = 0
+# for item in itertools.product(range(100, 10000), range(100, 10000)):
+#     possibility = item[0] * item[1]
+#
+#     if str(possibility) == str(possibility)[::-1]:
+#         if possibility > highest_palindrone:
+#             highest_palindrone = possibility
+#
+# print(highest_palindrone)
 
 
 
