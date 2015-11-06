@@ -80,5 +80,45 @@ def brute_force_highest_product_search(segment_length: int) -> int:
     return highest_product
 
 
+def highest_product_search(segment_length: int) -> int:
+    """
+    Same functionality but with a couple of optimizations:
+        - Don't calculate the product if a 0 is in the segment.
+
+    Args:
+        segment_length: An int specifying the length of segments to
+            consider the products of.
+
+    Returns:
+        An int representing the largest product of all considerate
+        segments.
+    """
+    highest_product = 0
+    for index, value in enumerate(HAYSTACK):
+
+        segment = [
+            int(number) for number in (HAYSTACK[index:index + segment_length])]
+
+        # Optimization: Don't calculate product if 0 in segment.
+        if 0 in segment:
+            continue
+
+        product = reduce(operator.mul, segment, 1)
+        if highest_product < product:
+            highest_product = product
+
+    return highest_product
+
+
 if __name__ == '__main__':
+    import timeit
     print(brute_force_highest_product_search(13))
+    print(highest_product_search(13))
+
+    print(timeit.repeat("brute_force_highest_product_search(13)",
+                        setup="from __main__ import brute_force_highest_product_search",
+                        number=100, repeat=3))
+
+    print(timeit.repeat("highest_product_search(13)",
+                        setup="from __main__ import highest_product_search",
+                        number=100, repeat=3))
